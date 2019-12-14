@@ -1,0 +1,130 @@
+#dashboard{
+
+  .manager{
+    float: left;
+    width: calc(100% - 420px);
+    max-width: 100%;
+    margin-right: 20px;
+  }
+
+  .box a{
+    position: relative;
+    display: block;
+    color: #fff;
+    background-color: $secondary-color;
+    font-weight: 300;
+    font-size: 1.25rem;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+
+    @media #{$small-and-down} {
+      font-size: 1rem;
+    }
+
+
+    i{
+      transition: 200ms cubic-bezier(0.7,0,0.3,1);
+    }
+
+    .icon{
+      position: absolute;
+      right: 20px;
+      width: 40px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  
+    &:hover i:not(.icon){
+      padding-right: 20px;
+    }
+
+  }
+
+  .things-to-do{
+    float: left;
+    width: 400px;
+
+    @media #{$medium-and-down} {
+      margin: 0 15px;
+      width: calc(100% - 30px);
+    }
+  }
+
+  .card{
+    margin-top: 0;
+    max-height: 80vh;
+    overflow-y: scroll;
+
+    .card-action-item{
+      color: #777;
+      position: relative;
+
+      &:hover .complete{
+        opacity: 1;
+      }
+
+      &:last-child .action-item{
+        border-bottom: none;
+      }
+    }
+
+    .empty-action-items{
+      text-align: center;
+      font-style: italic;
+      padding: 20px 10px;
+    }
+
+    .complete{
+      opacity: 0;
+      text-align: center;
+      display: block;
+      font-size: 12px;
+      transition: 200ms;
+
+      &:hover{
+        color: $secondary-color;
+      }
+    }
+
+    .weekday{
+      float: left;
+      width: 90px;
+      text-align: center;
+      height: 70px;
+      padding: 5px 5px 0;
+      font-size: 0.85rem;
+    }
+
+    .action-item{
+      float: left;
+      width: calc(100% - 90px);
+      padding: 10px;
+      padding-top: 4px;
+    }
+
+    .name{
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .desc{
+      padding-bottom: 5px;
+    }
+  }
+
+  .card-header{
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 15px;
+    color: #333;
+    border-bottom: 3px solid $background-color;
+  }
+}
+
+@media screen and (max-width: $medium-screen){
+  .manager{
+    width: calc(100% - 30px) !important;
+    margin: 0 15px !important;
+  }
+
+}

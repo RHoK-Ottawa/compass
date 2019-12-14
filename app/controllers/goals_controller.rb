@@ -1,58 +1,39 @@
 class GoalsController < SessionsController
   before_action :signed_in
-  before_action :current_user
-
-  layout "student"
-
-  def index
-    @current_goals = Goal.current_goals
-    @past_goals = Goal.past_goals
-    @goal = Goal.new
-    @activity = Activity.new
-    @courses = Course.all
-  end
-
-  def new
-    @goal = current_user.goals.build
-  end
 
   def create
-    @goal = current_user.goals.build(goal_params)
+    goal_params[:action_items_attributes] = goal_params[:action_items_attributes].map { | k,v | [ k, v ] unless v[:description].empty? }.compact.to_h if goal_params[:action_items_attributes]
+    @goal = Goal.new(goal_params)
     if @goal.save
-      redirect_to user_goals_path(@user)
+      render json: {goal: @goal}, status: 200 
     else
-      flash.now[:alert] = "Goal was not added"
-      render :new
+      render json: @goal.errors, status: 406
     end
   end
 
-  def edit
+  def index
+    @goals = current_user.goals
   end
 
   def update
-    if @goal.update_attributes(goal_params)
-      redirect_to goals_path(@goal)
+    goal_params[:action_items_attributes] = goal_params[:action_items_attributes].map { | k,v | [ k, v ] unless v[:description].empty? }.compact.to_h if goal_params[:action_items_attributes]
+    @goal = Goal.find(params[:id])
+    if @goal.update(goal_params)
+      render json: { goal: @goal }, status: 200 
     else
-      flash.now[:alert] = "Could not update goal"
-      render :edit
+      render json: @goal.errors, status: 406
     end
   end
 
-  def show
-    @activity = Activity.new
-    @courses = Course.all
-    @action = Action.new
-    @goal = Goal.find(params[:id])
-  end
-
   def destroy
-    @goal.destroy
-    redirect_to root_path, flash: {notice: "Goal removed"}
+    Goal.find(params[:id]).destroy
+    render json: {}, status: 200 
   end
-
+  
   private
     def goal_params
-      params.require(:goal).permit(:title,:description,:is_completed,:progress,:due_date)
+      @goal_params ||= params.require(:goal).permit(:title, :description, :is_completed, :due_date, :user_id,
+        action_items_attributes: [:description, :due_date, :id])
     end
 
 end

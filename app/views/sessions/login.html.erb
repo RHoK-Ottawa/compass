@@ -1,14 +1,47 @@
-<section id="login">
+<section id="login" style=<%= "background-image:url('#{@background.image.url}')" unless @background.nil? %>>
+
+  <div class="title">
+    Compass
+    <small>Centre for Self-Directed Learning</small>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="login-form">
+
+    <%= form_for @user, url: login_authentication_path, 
+      html: {method: "post", class: "col s12", autocomplete: "off" } do |f| %>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.text_field :email, autofocus: true %>
+          <%= f.label :email %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.password_field :password, placeholder: "" %>
+          <%= f.label :password %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <% if flash[:alert] %>
+            <div class="login-refused"><%= flash[:alert] %></div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row no-margin">
+        <div class="input-field col s12">
+          <%= content_tag :button, "Submit",type: :submit, class: "waves-effect waves-light btn" %>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
   
-  <div class="login-title">Sign In</div>
-
-  <%= form_tag url_for(controller: 'sessions', action: 'login_authentication'), method: :post do %>
-
-    <%= text_field_tag 'username', nil, placeholder: 'Username or Email' %>     
-    <%= password_field_tag 'password', nil, placeholder: 'Password' %> 
-    
-    <%= submit_tag "Sign In", class: 'login-button' %>
-  
-  <% end %>
-
 </section>

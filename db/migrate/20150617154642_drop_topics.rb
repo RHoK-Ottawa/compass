@@ -1,4 +1,4 @@
-class DropTopics < ActiveRecord::Migration
+class DropTopics < ActiveRecord::Migration[5.1]
   def change
   	drop_table :topics
   end

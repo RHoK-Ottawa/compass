@@ -1,2 +1,19 @@
-<h1>Projects#new</h1>
-<p>Find me in app/views/projects/new.html.erb</p>
+<nav>
+  <div class="nav-wrapper">
+    <div class="brand-logo">
+      <%= link_to "Portfolio", projects_path, class: "bc" %>
+      &nbsp;
+      <%= fa_icon "angle-double-right", class: "no-padding bc", text: "New Portfolio Piece" %>
+    </div>
+  </div>
+</nav>
+
+<section class="section-container">
+
+  <div class="row">
+    <h3 class="teal-text col s12">New Portfolio Piece</h3>
+  </div>
+
+  <%= render 'form' %>
+
+</section>

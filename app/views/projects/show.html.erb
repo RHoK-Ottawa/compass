@@ -1,21 +1,68 @@
-<section id="project">
-  <div class="project-grid">
-  	<div class="col" >
-  		<h1>Title:</h1> <%= @project.title %>
-      <h1>Project Link:</h1> <a href="<%= @project.link %>", target="_blank">Here</a> 
-  	</div>
-  	<div class="col">
+<section class="section-container no-padding">
 
-      <div class="project-wrapper">
-        <div class="project" >
-          <%= image_tag @project.photo if @project.photo.present? %>
+    <div class="hide-on-small-only project-nav left-arrow">
+      <%= link_to fa_icon("angle-left"), @project.previous, class: "nav-left" %>
+    </div>
+
+    <div class="project-content">
+      <div class="container">
+
+        <div class="menu"></div>
+
+        <%= link_to fa_icon("pencil"), edit_project_path(@project),
+          class: "btn-floating btn-large waves-effect waves-light right", style: "background-color: #{@project.user.profile_color}" %>
+
+        <%= link_to fa_icon("th"), projects_path,
+          class: "btn-floating btn-large waves-effect waves-light left", style: "background-color: #{@project.user.profile_color}" %>
+
+        <h1 class="center-align thick"><%= @project.title %></h1>
+
+        <hr>
+
+        <div class="center-align thin" style="color: <%= @project.user.profile_color %>">
+          <%= @project.date_completed.strftime("%B %d, %Y / ") if @project.date_completed.present? %>
+          <%= " By <span class=\"normal\">#{@project.user.full_name}</span>".html_safe %>
         </div>
+
+        <div class="show-tag center-align thin teal-text text-darken-1 ">
+          <% @project.tags.each do |tag| %>
+            <div class="chip">
+              <span><%= tag.name %></span>
+            </div>
+          <% end %>
+        </div>
+
+        <br>
+
+        <div class="flow-text center-align "><i><%= @project.description %></i></div>
+
+        <% if @project.photo.present? %>
+          <div class="show-display-image">
+            <%= image_tag @project.photo.url, class: "responsive-img materialboxed" %>
+          </div>
+        <% end %>
+
+        <div class="project-body">
+        <%= @project.body.html_safe %>
+        </div>
+
+        <% if @project.document.present? %>
+          <h6 class="bold">Attachment</h6>
+            <ul>
+              <li><%= link_to @project.document.original_filename, download_project_path(@project) %></li>
+            </ul>
+        <% end %>
+
+        <br/>
+        <br/>
       </div>
 
     </div>
-    <div class="col">
-      <h1>Description:</h1> <%= @project.description %>
+
+    <div class="hide-on-small-only project-nav right-arrow">
+      <%= link_to fa_icon("angle-right"), @project.next, class: "nav-right" %>
     </div>
   </div>
-</section>
 
+
+</section>

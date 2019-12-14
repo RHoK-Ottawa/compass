@@ -1,0 +1,78 @@
+#login{
+	background-image: image-url('signupbg.png');
+	background-size: cover;
+	min-height: 100vh;
+
+  .title{
+    padding: 30px;
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 300;
+    color: #fff;
+
+    small{
+      font-size: 2.5rem;
+      display: block;
+    }
+  }
+
+  .divider{
+    padding: 5vh;
+    background-color: transparent;
+  }
+
+  .login-form{
+    background-color: $primary-color-dark;
+    border-radius: 3px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    box-shadow: 0px 0px 10px #333;
+
+    .input-field{
+      margin: 0;
+    }
+
+    button{
+      width: 100%;
+    }
+    
+    input:-webkit-autofill {
+      background-color: #222 !important;
+      -webkit-box-shadow:0 0 0 50px #222 inset;
+      -webkit-text-fill-color: #eee;
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active {
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    input{
+      color: #eee;
+      &::selection {
+        background: #aaa;
+      }
+      &::-moz-selection {
+        background: #aaa
+      }
+      &:-webkit-autofill {
+        -webkit-text-fill-color: #eee !important;
+      }
+    }
+  }
+
+  .login-refused{
+    text-align: center;
+    background-color: rgba(255,255,255,0.95);
+    width: 100%;
+    padding: 15px 0;
+    color: #777;
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+}

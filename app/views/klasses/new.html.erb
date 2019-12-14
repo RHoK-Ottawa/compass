@@ -1,0 +1,20 @@
+<nav>
+  <div class="nav-wrapper">
+    <div class="brand-logo">
+      <%= link_to "Admin Dashboard", admin_dashboard_path, class: "bc" %>
+      &nbsp;
+      <%= fa_icon "angle-double-right", class: "no-padding bc", text: "New Class" %>
+    </div>
+  </div>
+</nav>
+
+<section class="section-container" style="min-height: 100vh;">
+
+  <div class="row">
+    <h3 class="teal-text col s12">New Class</h3>
+  </div>
+
+  <div class="row">
+    <%= render 'form' %>
+  </div>
+</section>

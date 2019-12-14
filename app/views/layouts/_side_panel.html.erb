@@ -1,20 +1,21 @@
-<section id="side-panel">
-  <div class="side-title">C<%= image_tag "logo.png"%>MPASS</div>
-  <div class="menu">
-    <ul class="menu">
-      <li class="menu-item" <%= 'style= background-color:#333;color:#eee;border-left-width:5px;border-left-style:solid;border-left-color:#ee6508;' if current_page?(user_goals_path(user_id: @user.id)) %> >
-        <%= link_to fa_icon("desktop", text: "Action Plan"), user_goals_path(@user) %>
-      </li>
-      <li class="menu-item"><%= link_to fa_icon("calendar-o", text: "Class Calendar"), static_pages_calender_path %></li>
-    
-      <li class="menu-item" <%= 'style= background-color:#333;color:#eee;border-left-width:5px;border-left-style:solid;border-left-color:#ee6508;' if current_page?(user_portfolios_path(user_id: @user.id)) %> >
-        <%= link_to fa_icon("user", text: "Portfolio"), user_portfolios_path(@user) %>
-      </li>
-    </ul>
-  </div>
-  <div class="menu-bottom">
-    <ul class="menu">
-      <li class="menu-item"><%= link_to fa_icon("sign-out", text: "Sign Out"), logout_path %></li>
-    </ul>
-  </div>
-</section>
+<a href="#" data-activates="slide-out" class="button-collapse hide-on-large-only">
+  <i class="mdi-navigation-menu grey-text "></i>
+</a>
+
+<ul id="slide-out" class="side-nav fixed grey darken-4">
+
+  <%= image_tag "compass_logo_small.png", class: "logo" %>
+
+  <%= side_panel_link(admin_dashboard_path, "user", "Admin") if current_user.admin? %>
+  <%= side_panel_link(action_plan_path, "desktop", "Action Plan") unless current_user.admin? %>
+  <%= side_panel_link(calendar_path, "calendar-o", "Class Calendar") if (Calendar.first.try(:show) && Calendar.first.try(:calendar_id) != "") %>
+  <%= side_panel_link(resources_path, "bookmark", "Resources") %>
+  <%= side_panel_link(projects_path, "user", "Portfolio") %>
+
+  <li data-no-turbolink>
+    <%= link_to fa_icon("sign-out", text: "Sign Out"), logout_path, class: "grey-text text-darken-1" %>
+  </li>
+
+  <%= link_to "Back to Admin Account", access_admin_path, class: "btn white-text" if session[:admin_id].present? %>
+
+</ul>

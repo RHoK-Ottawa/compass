@@ -1,49 +1,57 @@
 class SessionsController < ApplicationController
-
-  before_action :session_expiry, except: [:login_authentication] 
+  before_action :session_expiry, except: [:login_authentication]
   before_action :update_activity_time
-  before_action :current_user, only: [:login]
+  before_action :current_user
 
   def login_authentication
 
-    username_email = params[:user][:username]
+    email = params[:user][:email]
     password = params[:user][:password]
 
-    @user = User.authenticate(username_email, password)
-    # @user ||= User.new
+    @user = User.authenticate(email, password)
 
-    # unless @user.id.nil?
-    #   session[:user_id] = @user.id
-    #   redirect_to root_path
-    # else
-    #   flash.now[:alert] = "Login failed"
-    #   render "static_pages/home"
+    
+
     if @user
       session[:user_id] = @user.id
-      redirect_to user_portfolios_path(user_id: @user.id)
+      @user.admin? ? redirect_to(admin_dashboard_path) : redirect_to(projects_path)
     else
-      flash[:alert] = "Something went wrong!"
+      flash[:alert] = "Your email or password were incorrect."
       redirect_to root_path
     end
-    
+
+    rescue
+      flash[:alert] = "Oops, something went wrong. Try again."
+      redirect_to root_path
   end
 
-  def current_user
-    @user = User.find(session[:user_id]) if signed_in?
-    @user ||= User.new
+  def access_student
+    session[:admin_id] = session[:user_id]
+    session[:user_id] = params[:student_id]
+
+    redirect_to action_plan_path
   end
 
-  def signed_in?
-    session[:user_id].present?
+  def access_admin
+    session[:user_id] = session[:admin_id]
+    session[:admin_id] = nil
+    current_user
+
+    redirect_to admin_dashboard_path
   end
 
   def login
+    @background = BackgroundImage.first
+    if signed_in?
+      return @user.admin? ? redirect_to(admin_dashboard_path) : redirect_to(projects_path)
+    end
+    render layout: "public"
   end
-  
+
   def signed_in
     return redirect_to root_path unless signed_in?
   end
-  
+
   def logout
     disconnect_user
     redirect_to root_path
@@ -59,7 +67,7 @@ class SessionsController < ApplicationController
   end
 
   def update_activity_time
-    session[:expires_at] = 30.minutes.from_now
+    session[:expires_at] = 24.hours.from_now
   end
 
 private

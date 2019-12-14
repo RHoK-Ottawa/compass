@@ -1,184 +1,220 @@
-@import "lib";
+/* PROJECTS HEADER */
 
-div.modal-wrapper{
-  display: none;
-  height: 100vh;
-  width: 100vw;
+#header{
+
+  .header-bg{
+    width: 100%;
+    background-color: #eee;
+    background-image: image-url('tibetan-mountains.jpg');
+    background-size: cover;
+
+    .dark-overlay{
+      background-color: rgba(0,0,0, 0.2);
+    }
+
+    .header-container{
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 7vh 30px;
+
+      h2{
+        margin-bottom: 0;
+      }
+    }
+
+    .description{
+      font-size: 1.2rem;
+    }
+
+    .student-avatar{
+      width: 100%;
+      position: relative;
+      max-width: 250px;
+      max-height: 250px;
+      margin: 0 auto;
+
+      &::before{
+        content: "";
+        display: block;
+        padding-top: 100%;
+      }
+
+      img{
+        height: 100%;
+        position:  absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        object-fit: cover;
+        border-radius: 10rem;
+        border: 5px solid #000;
+      }
+    }
+
+    .social-media{
+
+      text-align: center;
+
+      .item{
+        display:inline-block;
+        padding: 0 20px;
+      }
+
+      i{
+        font-size: 1.5rem;
+      }
+      a{
+        opacity: 0.8;
+      }
+      a:hover{
+        @include transition(200ms);
+        opacity: 1;
+      }
+    }
+
+    a.student-edit{
+      @include transition(200ms);
+      position: absolute;
+      right: 1rem;
+      font: 400 1.1rem 'Roboto', helvetica, sans-serif;
+      top: 1rem;
+      color: #eee;
+
+      i{
+        padding-left: 5px;
+      }
+
+      &:hover{
+        color: orange;
+      }
+    }
+
+  }
+
+}
+
+
+// FORM
+fieldset{
+  border: none !important;
+}
+
+
+.project-nav{
+  display: block;
   position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(0,0,0,0.2);
-  z-index: 1;
-}
+  top:0;
+  width: 75px;
+  height: 100vh;
+  color: $primary-color;
+  line-height: 100vh;
+  text-align: center;
+  font-size: 10vh;
+  transition: 500ms;
 
-section#project-modal, section#course-modal, 
-  section#goal-modal, section#activity-modal{
-  top: 50%;
-	position: fixed;
-	display: none;
-  z-index: 2;
-  background-color: #fff;
-  padding: 1rem 0;
-  border-top: 10px solid #61c6d8;
-  width: 700px;
-  border-radius: 5px;
-  @include prefixer(transform, translate(50%, -50%));
-  @include prefixer(box-shadow, 0 0 20px rgba(0, 0, 0, 0.4));
-}
-
-input.modal-input, textarea.modal-input{
-	display: block;
-	width: 90%;
-	margin: 1rem auto;
-	border-radius: 5px;
-	font: 300 0.9rem 'Roboto', helvetica, sans-serif;
-	padding: 1rem 0.8rem;
-	background-color: #eee;
-	color:#222;
-	border: none;
-}
-
-input.modal-submit{
-	display: block;
-	width: 90%;
-	margin: 1rem auto;
-	border-radius: 5px;
-	font: 300 0.9rem 'Roboto', helvetica, sans-serif;
-	padding: 1rem 0.8rem;
-	background-color: #ee6508;
-	color: #fff;
-	border: none;
-}
-
-label.modal-file-upload{
-	display: block;
-	width: 90%;
-	margin: 1rem auto;	
-	color: #ee6508;
-
-	small{
-		padding-left: 10px;
-		color: #aaa;
-		font-weight: 300;
-		font-size: 0.9rem;
-	}
-
-	span.modal-file-name{
-		padding-left: 10px;
-		color: #4bbc9c;
-		font-size: 0.8rem;
-	}
-
-  input[type="file"] {
-      display: none;
+  @media #{$medium-and-down} {
+    width: 50px;
   }
 
-  &:hover{
-  	cursor: pointer;
+
+  &.left-arrow{
+    left: 240px;
+    text-align: right;
+    @media #{$medium-and-down} {
+      left: 0px;
+    }
   }
+
+  &.right-arrow{
+    right: 0;
+  }
+
 }
 
-div.project{
-  @include transition(100ms);
-  min-height: 150px;
-  background-color: #fff;
-  padding: 0.5rem;
-  position: relative;
-
-  &:hover{
-    cursor: pointer;
-    @include prefixer(box-shadow, 0 0 25px #61c6d8);
-  }
-
-  img{
-  	width: 100%;
-  }
-}
-
-div.project-title{
-	font-weight: 400;
-	color: #333;
-	font-size: 1.3rem;
-
-	+ div.project-desc{
-		position: absolute;
-		bottom: 1rem;
-	}
+.public-project .project-nav.left-arrow{
+  left: 0px;
 }
 
 a.project-link{
-	display: block;
-	position: absolute;
-	top:0;
-	left:0;
-	height: 100%;
-	width: 100%;
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left: 0;
 }
 
-img + div.project-title + div.project-desc{
-	padding-top: 10px; 
-	position: static;
-}
-
-
-div.add-project{
+.add-project{
   @include transition(100ms);
   height: 150px;
   background-color: #fff;
   font-weight: 400;
-  color: #777;
+  color: #333;
+  text-align: center;
 
   i{
     padding-top: 20px;
     font-size: 4rem;
-    color: #777;
+    color: #333;
     margin: 0 auto;
   }
 
-  text-align: center;
-
-  &:hover{
-    cursor: pointer;
-    @include prefixer(box-shadow, 0 0 25px #61c6d8);
-  }
 }
 
-div.project-wrapper{
-  border-top: 10px solid #61c6d8;
-  font: 300 0.9rem 'Roboto', helvetica, sans-serif;
-  @include prefixer(box-shadow, 0 0 20px rgba(0, 0, 0, 0.4));
-  margin-bottom: 3rem;
-}
-
-section#project{
+.project-wrapper{
   position: relative;
-  top: 0px;
-  left: 250px;
-  min-height: calc(100vh - 300px);
-  background-color: #eee;
-  width: calc(100vw - 250px);
-}
+  border-top: 10px solid #000;
+  font: 300 0.9rem 'Roboto', helvetica, sans-serif;
 
-div.project-grid{
-  width: calc(100vw - 250px);
-  background-color: #eee;
-  position: absolute;
-  padding: 3rem 0;
-  .col{
-    @include span-columns(4, 3);
+  .card-image img{
+    max-height: 400px;
+    object-fit: cover;
   }
 }
 
-div.remove-project{
-  display: none;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  padding: 0.1rem 0.2rem;
-  color: #fff;
-  background-color: #222;
-  cursor: pointer;
-  z-index: 1;
-  font: 300 1em 'Raleway', sans-serif !important;
+/* NEW */
 
+form.new-project{
+  color: #444;
+}
+
+/* SHOW */
+
+.show-display-image{
+  margin: 2.5rem 0;
+
+  img{
+    margin: 0 auto;
+    max-height: 100vh;
+    object-fit: cover;
+  }
+}
+
+.project-body{
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.project-content{
+  opacity: 0.65;
+}
+
+.project-nav{
+  text-align: center;
+  font-size: 0.9rem;
+  i{
+    font-size: calc(100vw/12);
+  }
+}
+
+.btn-floating{
+  i.fa{
+    padding: 0;
+  }
+}
+
+.show-tag{
+  padding-top: 10px;
 }

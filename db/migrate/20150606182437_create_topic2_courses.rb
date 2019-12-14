@@ -1,4 +1,4 @@
-class CreateTopic2Courses < ActiveRecord::Migration
+class CreateTopic2Courses < ActiveRecord::Migration[5.1]
   def change
     create_table :topic2_courses do |t|
       t.references :topic, index: true, foreign_key: true

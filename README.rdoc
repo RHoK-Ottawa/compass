@@ -1,0 +1,3 @@
+== Compass
+
+Compass is an e-portfolio platform for the teens involved with Liberated Learners. Empowering teens to set their own goals and be able to track and reflect on their progress, connecting activities both inside and outside of liberated learners with these goals.

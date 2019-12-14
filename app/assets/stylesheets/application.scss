@@ -1,63 +1,26 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-
-@import "lib";
 @import "font-awesome";
-
-body{
-	background-color: rgba(238,238,238,0.5);
-  margin: 0;
-  overflow-x: hidden;
-  font-family: 'Roboto', helvetica, sans-serif;
+@import "materialize/components/color";
+$primary-color: color("grey", "darken-2") !default;
+$primary-color-light: color("grey", "base") !default;
+$primary-color-dark: color("grey", "darken-4") !default;
+$secondary-color: color("orange", "darken-3") !default;
+$success-color: color("teal", "base") !default;
+$error-color: color("red", "lighten-1") !default;
+$link-color: color("orange", "darken-1") !default;
+$background-color: color("grey", "lighten-3") !default;
+@mixin transition($milli) {
+  transition: $milli;
 }
-
-a, button{
-  text-decoration: none;
-  color: inherit;
-  &::visited{
-    color: #789;
-  }
-
-  &:focus{
-    outline-style: none;
-  }
-}
-
-input:focus, textarea:focus, select:focus{
-  outline: none;
-}
-
-ul{
-  list-style-type: none;
-  margin:0;
-  padding:0;
-}
-
-#error_explanation {
-  margin: 0 auto;
-  width: 85%;
-  margin-bottom: 20px;
-  color: #eee;
-  font: 300 0.9rem 'Roboto', helvetica, sans-serif;
-  line-height: 1.25rem;
-}
-
-div.field_with_errors{
-  display: inline;
-  input{
-    border:1px solid #cd5c5c;
-  }
-}
+@import "materialize";
+@import "action_plan";
+@import "calendar";
+@import "category";
+@import "grid";
+@import "general";
+@import "layouts";
+@import "projects";
+@import "users";
+@import "resources";
+@import "sessions";
+@import "dashboard";
+@import "klass";

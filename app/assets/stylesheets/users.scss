@@ -1,10 +1,86 @@
-section#student-edit-profile{
-  display: none;
-	width: calc(100vw - 250px);
-	height: 100vh;
-	background-color: white;
-	position: fixed;
-	right: 0;
+form.edit-student{
+	color: #444;
+
+	.custom-file-upload{
+		width: 150px;
+    display: block;
+    margin: 0 auto;
+
+
+	  input[type="file"] {
+	      display: none;
+	  }
+	}
 }
 
+#login-signup-container form{
+  width: 90%;
+  margin: 0 auto;
+  color: #bbb;
+  font-weight: 300;
+}
 
+.avatar-column{
+  width: 180px;
+	padding: 10px;
+  margin: 0 auto;
+
+  img{
+  	display: block;
+  	margin: 0 auto;
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    border-radius: 10rem;
+    border: 5px solid teal;
+  }
+
+}
+
+.delete-user{
+  width: 100%;
+  padding: 10px 0;
+  color: teal;
+  font-size: 1.2rem;
+
+  & span{
+    font-size: 1rem;
+    color: #777;
+  }
+}
+
+// RESUME SCSS
+
+.entry{
+  &:hover .secondary-content{
+    opacity: 1;
+  }
+}
+
+.entry{
+  padding-bottom: 20px;
+  font-size: 14px;
+
+  .title{
+    color: #333;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: left;
+    margin: 0;
+  }
+
+  .description{
+    padding-top: 10px;
+  }
+
+  .secondary-content{
+    transition: 200ms;
+    opacity: 0;
+    a{
+      &:first-child{
+        padding-left: 10px;
+      }
+    }
+  }
+}

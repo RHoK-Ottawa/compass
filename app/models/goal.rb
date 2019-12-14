@@ -1,18 +1,9 @@
 class Goal < ActiveRecord::Base
-	belongs_to :user
-	before_create :set_default_progress
 
-	has_many :actions
-	
-	scope :newest, -> { order(:created_at => :desc) }
-	scope :create_before, -> (time){ where('created_at < ?', time) }
-	scope :current_goals, -> { newest.where('is_completed = False' && 'progress < 100') }
-	scope :past_goals, -> { where('is_completed = True' && 'progress = 100') }
+  default_scope { order(is_completed: :asc, created_at: :desc) }
 
-	private
-
-	def set_default_progress
-		self.progress = 0
-	end
+  belongs_to :user
+  has_many :action_items, dependent: :destroy
+  accepts_nested_attributes_for :action_items, allow_destroy: true
 
 end

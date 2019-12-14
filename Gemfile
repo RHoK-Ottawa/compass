@@ -1,30 +1,47 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.5.0'
 
-gem 'rails', '~> 4.2.1'
+gem 'rails', '~> 5.1.4'
 gem 'thin'
 gem 'bcrypt'
-gem 'sass-rails', '~> 5.0'
-gem 'bootstrap-sass', '~> 3.3.4'
-gem 'pg'
-gem "paperclip", "~> 4.2"
-gem 'uglifier', '>= 1.3.0'
-gem 'font-awesome-rails', '~> 4.3.0.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'sass-rails'
+gem 'pg', "~> 0.18"
+gem 'tinymce-rails'
+gem 'nested_form_fields'
+gem 'paperclip'
+gem 'aws-sdk'
+gem 'uglifier'
+gem 'font-awesome-rails'
+gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'rabl'
+gem 'oj'
+gem 'momentjs-rails'
+gem 'pg_search'
+gem 'dotenv-rails'
 gem 'jquery-ui-rails'
-gem 'pry', '~> 0.10.1'
+gem 'pry'
 gem 'turbolinks'
-gem 'bootstrap-datepicker-rails', '~> 1.4.0'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'materialize-sass'
+gem 'react-rails'
+gem 'handlebars_assets'
+gem 'sdoc'
 gem 'email_validator'
 
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
-  gem 'spring', '~> 1.3.4'
+  gem 'web-console'
+  gem 'spring'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'ffaker'
 end
 
 gem 'rails_12factor', group: :production
 
+#ruby-gemset=compass

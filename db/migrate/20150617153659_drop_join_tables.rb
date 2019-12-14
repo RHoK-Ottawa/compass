@@ -1,4 +1,4 @@
-class DropJoinTables < ActiveRecord::Migration
+class DropJoinTables < ActiveRecord::Migration[5.1]
   def change
   	drop_table :student2_courses
   	drop_table :topic2_courses

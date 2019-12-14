@@ -1,2 +1,23 @@
-<h1>Resources#new</h1>
-<p>Find me in app/views/resources/new.html.erb</p>
+<nav>
+  <div class="nav-wrapper">
+    <div class="brand-logo">
+      <% if params[:general] %>
+        <%= link_to "Admin Dashboard", admin_dashboard_path, class: "bc" %>
+      <% else %>
+        <%= link_to "Resources", resources_path, class: "bc" %>
+      <% end %>
+      &nbsp;
+      <%= fa_icon "angle-double-right", class: "no-padding bc", text: "New Resource" %>
+    </div>
+  </div>
+</nav>
+
+<section class="section-container" style="min-height: 100vh;">
+
+  <div class="row">
+    <h3 class="teal-text col s12">New Resource</h3>
+  </div>
+
+  <%= render 'form' %>
+
+</section>

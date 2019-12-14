@@ -1,0 +1,54 @@
+#klass, #students{
+
+  table{
+
+    th{
+      text-align: center;
+      border-radius: 0;
+      font-weight: 300;
+    }
+
+    td{
+      text-align: center;
+    }
+
+    .name-desc, .student-name{
+      text-align: left;
+      padding-left: 20px;
+      width: 600px;
+    }
+
+    .student-name{
+      width: auto;
+    }
+
+    .name{
+      font-weight: 500;
+      font-size: 1.1rem;
+
+      &:hover a i{
+        opacity: 1;
+      }
+
+
+      a{
+        i{
+          transition: 200ms;
+          opacity: 0;
+          color: #333;
+          padding: 0;
+          padding-left: 10px;
+          &:hover{
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+
+  }
+
+}
+
+#klasse-modal a:hover{
+  text-decoration: underline;
+}
